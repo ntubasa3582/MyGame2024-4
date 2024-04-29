@@ -5,7 +5,7 @@ public class CharacterMove : MonoBehaviour //プレイヤーの動きを制御�
 {
     Rigidbody _rb;
     Vector3 _pressedKeyVector;  //WASDキーいずれかが押された時に取得した値を入れておく変数
-    float _moveSpeed = 1;       //characterの移動量を決める変数      
+    float _moveSpeed = 2;       //characterの移動量を決める変数      
 
     void Awake()
     {
