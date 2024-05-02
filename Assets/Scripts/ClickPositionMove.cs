@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
-public class ClickPositionMove : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+public class ClickPositionMove : MonoBehaviour  //マウスクリックを使って移動するスクリプト
 {
     NavMeshAgent _navMeshAgent;
     RaycastHit _clickHit;
@@ -14,7 +15,7 @@ public class ClickPositionMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0)&&!Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0)&&!Input.GetMouseButton(1))  //クリックした場所に移動するスクリプト
         {
             Ray mouseCursorPos = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseCursorPos, out _clickHit))
@@ -26,8 +27,6 @@ public class ClickPositionMove : MonoBehaviour
             {
                 _navMeshAgent.SetDestination(_clickPos);    
             }
-            
-
         }    
     }
 }

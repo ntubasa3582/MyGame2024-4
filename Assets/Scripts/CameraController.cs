@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour //カメラ制御スクリプト
 {
     [FormerlySerializedAs("_moveLimitObjects")] [SerializeField]
     GameObject[] _moveLimitObj;
@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButton(1) && !Input.GetMouseButton(0))
         {
             _mouseVector =
-                new Vector3(Input.GetAxisRaw("Mouse X"), 0, Input.GetAxisRaw("Mouse Y")); //characterの移動処理
+                new Vector3(Input.GetAxisRaw("Mouse X"), 0, Input.GetAxisRaw("Mouse Y"));   //カメラ移動の処理
             transform.position += _mouseVector * 0.03f;
             Cursor.visible = false;
         }
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump"))    //targetの位置にカメラを固定する
         {
             transform.position =
                 new Vector3(_target.transform.position.x, 10.56f, _target.transform.position.z + -8.5f);

@@ -11,7 +11,6 @@ public class CharacterMove : MonoBehaviour //プレイヤーの動きを制御�
     {
         _rb = GetComponent<Rigidbody>();
     }
-
     void FixedUpdate()
     {
         _pressedKeyVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); //characterの移動処理
