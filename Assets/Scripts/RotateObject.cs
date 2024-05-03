@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -27,5 +26,6 @@ public class RotateObject : MonoBehaviour
         _angle += _rotateSpeed * Time.deltaTime;
         //　角度を0～360度の間で繰り返す
         _angle = Mathf.Repeat(_angle, 360f);
+        
     }
 }
