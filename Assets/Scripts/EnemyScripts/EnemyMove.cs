@@ -1,24 +1,33 @@
-using System;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    EnemyAttack _enemyAttack;
     [SerializeField] float _speedParameter;
     GameObject _target;
     float _playerDistance;
     float _moveSpeed;
+    float _timer;
     bool _playerDetection;
 
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Character");
+        _enemyAttack = GetComponent<EnemyAttack>();
     }
 
     void Update()
     {
+        
         if (Vector3.Distance(transform.position, _target.transform.position) < 5)
         {
             _playerDetection = true;
+            _timer += Time.deltaTime;
+        }
+        else
+        {
+            _playerDetection = false;
+            _timer = 0;
         }
         if (_playerDetection)
         {
@@ -31,6 +40,11 @@ public class EnemyMove : MonoBehaviour
             else
             {
                 transform.LookAt(_target.transform.position);
+                if (_timer > 3)
+                {
+                    _enemyAttack.RotateAttack();
+                    _timer = 0;
+                }
             }
         }
     }
