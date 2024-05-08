@@ -22,11 +22,12 @@ public class ClickPositionMove : MonoBehaviour  //マウスクリックを使っ
             {
                 _clickPos = _clickHit.point;
                 _clickPos.y = 1;
+                transform.LookAt(_clickPos);
             }
             if (_clickPos != null)
             {
                 _navMeshAgent.SetDestination(_clickPos);    
             }
-        }    
+        }
     }
 }
