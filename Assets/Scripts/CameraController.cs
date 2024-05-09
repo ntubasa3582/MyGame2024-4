@@ -54,7 +54,7 @@ public class CameraController : MonoBehaviour //カメラの移動制御スク�
         if (Input.GetMouseButton(1) && !Input.GetMouseButton(0))    //左クリックでカメラの移動
         {
             _mouseVector = new Vector3(Input.GetAxisRaw("Mouse X"), 0, Input.GetAxisRaw("Mouse Y"));   //マウスの移動量を変数に代入する
-            transform.position += _mouseVector * (_cameraSpeed * 10);     //移動量にTime.deltaTimeをかけてtransformに代入する
+            transform.position += _mouseVector * _cameraSpeed;     //移動量にTime.deltaTimeをかけてtransformに代入する
             Cursor.visible = false;     //マウスカーソルの表示をオフにする
         }
         else
