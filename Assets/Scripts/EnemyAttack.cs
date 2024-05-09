@@ -4,7 +4,8 @@ using DG.Tweening;
 
 public class EnemyAttack : MonoBehaviour        //エネミーの攻撃行動スクリプト
 {
-    [SerializeField] GameObject _rotateAttackObj;   
+    [SerializeField] GameObject _rotateAttackObj;
+    [SerializeField] float _delayValue;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class EnemyAttack : MonoBehaviour        //エネミーの攻撃行動ス
     
     IEnumerator DelayActiveChange(float delayTime)
     {
+        delayTime = _delayValue;
         yield return new WaitForSeconds(delayTime);
         _rotateAttackObj.SetActive(false);
     }

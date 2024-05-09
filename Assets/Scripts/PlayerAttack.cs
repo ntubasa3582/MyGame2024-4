@@ -7,10 +7,22 @@ public class PlayerAttack : MonoBehaviour        //プレイヤーの攻撃を�
 {
     [FormerlySerializedAs("_RotateAttackObjects")] [FormerlySerializedAs("_attackObjects")] [SerializeField] GameObject[] _rotateAttackObjects;
     [SerializeField] GameObject _rotateAttackObj;
+    [FormerlySerializedAs("_playerBullet")] [SerializeField] GameObject _attackBullet;
+    [SerializeField] float _bulletSpeed;
     bool _continuousAttack;     //攻撃時のクールダウンフラグ
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log(transform.forward);
+            //_attackBullet生成   bulletに_attackBulletを入れる
+            GameObject bullet = Instantiate(_attackBullet, this.transform.position, Quaternion.identity);
+            //のRigidbodyを取得  
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            bulletRigidbody.AddForce(this.transform.forward * _bulletSpeed);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if (!_continuousAttack)
             {
