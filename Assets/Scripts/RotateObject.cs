@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RotateObject : MonoBehaviour
+public class RotateObject : MonoBehaviour   //回転するオブジェクトの制御するスクリプト
 {
     //ターゲットからの距離
     [FormerlySerializedAs("distanceFromTarget")] [SerializeField]

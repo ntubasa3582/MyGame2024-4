@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CharacterMove : MonoBehaviour //プレイヤーの動きを制御するスクリプト
+public class PlayerKeyMove : MonoBehaviour //プレイヤーの動きをキーボード入力で行う
 {
     Rigidbody _rb;
-    Vector3 _pressedKeyVector;  //WASDキーいずれかが押された時に取得した値を入れておく変数
+    Vector3 _pressedKeyVector;  //キー入力入れる変数
     float _moveSpeed = 2;       //characterの移動量を決める変数      
 
     void Awake()
@@ -13,7 +13,7 @@ public class CharacterMove : MonoBehaviour //プレイヤーの動きを制御�
     }
     void FixedUpdate()
     {
-        _pressedKeyVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); //characterの移動処理
+        _pressedKeyVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")); //WASDキーいずれかが押された時に取得した値を_pressedKeyVectorに入れる
         _rb.velocity = _pressedKeyVector * _moveSpeed;
     }
     /// <summary>_moveSpeedの値を変更するメソッド</summary>

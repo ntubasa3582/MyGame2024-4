@@ -1,15 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class CameraController : MonoBehaviour //カメラ制御スクリプト
+public class CameraController : MonoBehaviour //カメラの移動制御スクリプト
 {
     Camera _mainCamera;
-    [SerializeField] GameObject[] _moveLimitObj;
-    [SerializeField] GameObject _target;
-    Vector3 _mouseVector;
-    float _mouseScrollValue;
-    bool _moveLimit;
+    [SerializeField] GameObject[] _moveLimitObj;    //カメラの移動の制限座標のオブジェクト
+    [SerializeField] GameObject _target;            //カメラが正面に移すオブジェクト
+    Vector3 _mouseVector;                           //マウスの座標の変数
+    float _mouseScrollValue;                        //マウスホイールの入力時の値を入れる変数
 
     void Start()
     {
@@ -18,21 +15,22 @@ public class CameraController : MonoBehaviour //カメラ制御スクリプト
 
     void Update()
     {
-        _mouseScrollValue =-1 * Input.mouseScrollDelta.y;
-        if (_mainCamera.fieldOfView > 35 && _mainCamera.fieldOfView < 100)
+        
+        if (_mainCamera.fieldOfView > 35 && _mainCamera.fieldOfView < 100)  //35から100までの値を超えていなかったら_mainCamera.fieldOfViewの値を変える
         {
-            _mainCamera.fieldOfView += _mouseScrollValue;    
+            _mouseScrollValue =-1 * Input.mouseScrollDelta.y;   //マウスホイールの入力値を変数に入れる    -1をかけて値を逆にする
+            _mainCamera.fieldOfView += _mouseScrollValue;       
         }
-        else if (_mainCamera.fieldOfView <= 35)
+        else if (_mainCamera.fieldOfView <= 35)     //35より下の場合35.1にする
         {
-            _mainCamera.fieldOfView = 35.1f;
+            _mainCamera.fieldOfView = 35.1f;    
         }
-        else if (_mainCamera.fieldOfView >= 100)
+        else if (_mainCamera.fieldOfView >= 100)    //100より上に場合99.9にする
         {
             _mainCamera.fieldOfView = 99.9f;
         }
         
-        if (_moveLimitObj[0].transform.position.x > transform.position.x)
+        if (_moveLimitObj[0].transform.position.x > transform.position.x)   //座標がlimitを超えたら座標を戻す
         {
             transform.position = new Vector3(transform.position.x + 0.1f, transform.position.y, transform.position.z);
         }
@@ -51,22 +49,21 @@ public class CameraController : MonoBehaviour //カメラ制御スクリプト
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
         }
-        if (Input.GetMouseButton(1) && !Input.GetMouseButton(0))
+        
+        if (Input.GetMouseButton(1) && !Input.GetMouseButton(0))    //左クリックでカメラの移動
         {
-            _mouseVector =
-                new Vector3(Input.GetAxisRaw("Mouse X"), 0, Input.GetAxisRaw("Mouse Y"));   //カメラ移動の処理
-            transform.position += _mouseVector * 0.03f;
-            Cursor.visible = false;
+            _mouseVector = new Vector3(Input.GetAxisRaw("Mouse X"), 0, Input.GetAxisRaw("Mouse Y"));   //マウスの移動量を変数に代入する
+            transform.position += _mouseVector * Time.deltaTime;     //移動量にTime.deltaTimeをかけてtransformに代入する
+            Cursor.visible = false;     //マウスカーソルの表示をオフにする
         }
         else
         {
-            Cursor.visible = true;
+            Cursor.visible = true;      //マウスカーソルの表示をオンにする
         }
 
-        if (Input.GetButton("Jump"))    //targetの位置にカメラを固定する
+        if (Input.GetButton("Jump"))    //Spaceキーが押されたらtargetの位置にカメラを固定する
         {
-            transform.position =
-                new Vector3(_target.transform.position.x, 15f, _target.transform.position.z + -6.5f);
+            transform.position = new Vector3(_target.transform.position.x, 15f, _target.transform.position.z + -6.5f);
         }
         
         
