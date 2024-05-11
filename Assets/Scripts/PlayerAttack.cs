@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour //プレイヤーの攻撃を制御ス
                 //_attackBullet生成   bulletに_attackBulletを入れる
                 Instantiate(_attackBullet, this.transform.position, Quaternion.identity); //弾を生成
                 _continuousAttack = true;
-                StartCoroutine(DelayActiveChange(3f));
+                StartCoroutine(DelayActiveChange(1.5f));
             }
 
             if (Input.GetKeyDown(KeyCode.W))
@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour //プレイヤーの攻撃を制御ス
                     RotateMode.FastBeyond360); //rotation.y360度回転する
                 _continuousAttack = true;
                 _rotateAttackObj.SetActive(true); //攻撃タグがついているオブジェクトのセットアクティブをオンにする
-                StartCoroutine(DelayActiveChange(0.3f));
+                StartCoroutine(DelayActiveChange(0.5f));
             }
         }
     }

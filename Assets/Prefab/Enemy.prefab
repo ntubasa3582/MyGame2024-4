@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5594824165906902266}
   - component: {fileID: 8018351476970048357}
   - component: {fileID: 450117641158577821}
-  - component: {fileID: 4916623121897778479}
-  - component: {fileID: 7812776779680494624}
   - component: {fileID: 5203481025241362256}
+  - component: {fileID: -1990246117389783153}
+  - component: {fileID: -726678100724500572}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -139,34 +139,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4916623121897778479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743585310465986132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89fb25a45592c1745a0d8fa424c239bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedParameter: 2.5
-  _detectionRange: 7
---- !u!114 &7812776779680494624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743585310465986132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5df42950af12bbf489a839de5733db77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateAttackObj: {fileID: 5828519274371045102}
-  _delayValue: 0
 --- !u!195 &5203481025241362256
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,6 +161,34 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-1990246117389783153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743585310465986132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fb25a45592c1745a0d8fa424c239bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedParameter: 5
+  _detectionRange: 10
+--- !u!114 &-726678100724500572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743585310465986132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df42950af12bbf489a839de5733db77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateAttackObj: {fileID: 5828519274371045102}
+  _delayValue: 3
 --- !u!1 &5828519274371045102
 GameObject:
   m_ObjectHideFlags: 0
