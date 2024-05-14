@@ -8,10 +8,15 @@ public class BulletController : MonoBehaviour
     Rigidbody _rb;
     Vector3 _bulletDirection;
     float _timer;
-    void Start()
+
+    private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
         _bulletDirection = _player.transform.forward;
         _bulletDirection.y = 0;
     }
