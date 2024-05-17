@@ -1,33 +1,31 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class EnemyDetectionMoba : MonoBehaviour
+public class EnemyDetectionMoba : MonoBehaviour         //ã‚¨ãƒãƒŸãƒ¼ã¨ä»–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è·é›¢ã‚’ç®¡ç†ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 {
-    EnemyActionMoba _enemyAction;
-
-    [SerializeField] GameObject _targetObj;
+    EnemyActionState _enemyAction;
+    GameObject _firstMoveObj;          
     GameObject _enemy;
 
     private void Awake()
     {
-        _enemyAction = FindAnyObjectByType<EnemyActionMoba>();
-        _targetObj = GameObject.FindGameObjectWithTag("EnemyMovePoint");
+        _enemyAction = FindAnyObjectByType<EnemyActionState>();
+        _firstMoveObj = GameObject.FindGameObjectWithTag("EnemyMovePoint");
         _enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     void Start()
     {
-        _enemyAction.ChangeSetMove(_targetObj.transform.position);                          //_targetObj‚Ü‚ÅEnemy‚ª“®‚­‚æ‚¤‚Éˆ—‚ğ‘—‚é
+        _enemyAction.ChangeSetMove(_firstMoveObj.transform.position);                          //_firstMoveObjã®æ–¹å‘ã«ç§»å‹•ã™ã‚‹
     }
     
     
     void Update()
     {
-        if (Vector3.Distance(transform.position, _enemy.transform.position) < 3)            //ƒGƒlƒ~[‚Æ‚Ì‹——£‚ª3‚É‚È‚Á‚½‚ç“®‚«‚ğ~‚ß‚éˆ—‚ğ‘—‚é
+        if (Vector3.Distance(transform.position, _enemy.transform.position) < 3)            //æ•µã‚¨ãƒãƒŸãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®è·é›¢ãŒ3ã‚ˆã‚Šå°ã•ããªã£ãŸã‚‰å‹•ãã‚’æ­¢ã‚ã‚‹
         {
             _enemyAction.ChangeSetMove(transform.position);
         }
-        else if (Vector3.Distance(transform.position, _enemy.transform.position) < 15)      //ƒGƒlƒ~[‚Æ‚Ì‹——£‚ª15‚É‚È‚Á‚½‚çƒGƒlƒ~[‚Ì•ûŒü‚É“®‚©‚·ˆ—‚ğ‘—‚é
+        else if (Vector3.Distance(transform.position, _enemy.transform.position) < 15)      //æ•µã‚¨ãƒãƒŸãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®è·é›¢ãŒ15ã‚ˆã‚Šå°ã•ããªã£ãŸã‚‰ã‚¨ãƒãƒŸãƒ¼ã®æ–¹å‘ã«ç§»å‹•ã™ã‚‹
         {
             _enemyAction.ChangeSetMove(_enemy.transform.position);
         }

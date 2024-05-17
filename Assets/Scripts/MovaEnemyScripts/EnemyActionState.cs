@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemyActionMoba : MonoBehaviour
+public class EnemyActionState : MonoBehaviour            //エネミーの行動を管理するスクリプト
 {
     EnemyAttackMoba _enemyAttackMoba;
     EnemyDetectionMoba _enemyDetectionMoba;
@@ -14,6 +13,14 @@ public class EnemyActionMoba : MonoBehaviour
         _enemyDetectionMoba = FindObjectOfType<EnemyDetectionMoba>();
         _enemyMoveMoba = FindObjectOfType<EnemyMoveMoba>();
     }
+
+    void Update()
+    {
+        
+    }
+    
+    
+
 
     enum ActionState      //自身の行動を管理する変数
     {
