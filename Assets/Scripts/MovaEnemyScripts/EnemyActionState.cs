@@ -12,21 +12,11 @@ public class EnemyActionState : MonoBehaviour            //エネミーの行動
         _enemyAttackMoba = FindObjectOfType<EnemyAttackMoba>();
         _enemyDetectionMoba = FindObjectOfType<EnemyDetectionMoba>();
         _enemyMoveMoba = FindObjectOfType<EnemyMoveMoba>();
-    }
-
-    void Update()
-    {
         
     }
-    
-    
-
-
-    enum ActionState      //自身の行動を管理する変数
+    void Update()       //キャラクターの行動パターンを書く
     {
-        DefaultMove,
-        Attack,
-        NewTarget
+        
     }
 
     public void ChangeSetMove(Vector3 value)

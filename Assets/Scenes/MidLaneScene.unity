@@ -838,7 +838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b819e9e79b2d1540af316aa7f2b09ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _farstMoveObj: {fileID: 0}
 --- !u!114 &939543514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,6 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBullet: {fileID: 3665793742856583048, guid: 9f7adb5e24a57754f8248de3ff92ef6a, type: 3}
+  _attackInterval: 1
   AttackModeSwitch: 0
 --- !u!114 &939543515
 MonoBehaviour:
