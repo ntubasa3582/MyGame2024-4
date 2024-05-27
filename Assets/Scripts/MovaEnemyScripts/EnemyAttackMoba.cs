@@ -1,29 +1,31 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
-public class EnemyAttackMoba : MonoBehaviour        //エネミーの攻撃を管理するスクリプト
+public class EnemyAttackMoba : MonoBehaviour //エネミーの攻撃を管理するスクリプト
 {
-    EnemyActionState _enemyAction;
-    [SerializeField] GameObject _enemyBullet;       //敵が発射する弾
-    [SerializeField] float _attackInterval = 1;
-    [SerializeField, Header("Trueが遠距離攻撃 Falseが近距離攻撃")] bool AttackModeSwitch;       //近距離攻撃と遠距離攻撃を切り替える変数
-    float _timer;       //攻撃インターバル
-    bool _attackStop;                               //攻撃をやめる変数 Trueの時に攻撃
-    
-    void Awake()
+    [SerializeField] GameObject _enemyBulletPrefab; //敵が発射する弾のプレハブ
+    [SerializeField] float _bulletSpeed; //弾の移動速度
+    [SerializeField] float _bulletInterval; //弾の生成時間
+    Vector3 _attackTarget;
+    float _attackTimer;
+    bool _isAttack; //攻撃のオンオフ切り替え
+
+    public void Attack(bool attackSwitch) //攻撃処理
     {
-        _enemyAction = FindObjectOfType<EnemyActionState>();
+        _isAttack = attackSwitch;
     }
 
     void Update()
     {
-        if (_attackStop)
+        if (_isAttack)
         {
+            _attackTimer += Time.deltaTime;
+            if (_bulletInterval < _attackTimer)
+            {
+                _attackTimer = 0;
+                Debug.Log("攻撃");
+                GameObject bullet = Instantiate(_enemyBulletPrefab, transform.position, Quaternion.identity);
+            }
         }
-    }
-
-    public void RangeAttack(GameObject _target)      //遠距離攻撃
-    {
-        Instantiate(_enemyBullet, transform.position, Quaternion.identity);
     }
 }

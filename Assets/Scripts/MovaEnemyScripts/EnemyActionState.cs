@@ -1,27 +1,21 @@
-using System;
 using UnityEngine;
 
-public class EnemyActionState : MonoBehaviour            //エネミーの行動を管理するスクリプト
+[RequireComponent(typeof(EnemyMoveMoba))]
+[RequireComponent(typeof(EnemyAttackMoba))]
+[RequireComponent(typeof(EnemyDetectionMoba))]
+public class EnemyActionState : MonoBehaviour //エネミーの行動を管理するスクリプト
 {
-    EnemyAttackMoba _enemyAttackMoba;
-    EnemyDetectionMoba _enemyDetectionMoba;
-    EnemyMoveMoba _enemyMoveMoba;
+    [SerializeField] EnemyAttackMoba _enemyAttackMoba;
+    [SerializeField] EnemyDetectionMoba _enemyDetectionMoba;
+    [SerializeField] EnemyMoveMoba _enemyMoveMoba;
 
-    private void Awake()
-    {
-        _enemyAttackMoba = FindObjectOfType<EnemyAttackMoba>();
-        _enemyDetectionMoba = FindObjectOfType<EnemyDetectionMoba>();
-        _enemyMoveMoba = FindObjectOfType<EnemyMoveMoba>();
-        
-    }
-    void Update()       //キャラクターの行動パターンを書く
-    {
-        
-    }
-
-    public void ChangeSetMove(Vector3 value)
+    public void ChangeSetMove(Vector3 value)        //移動させたいオブジェクトの座標を渡す
     {
         _enemyMoveMoba.SetDestinationChange(value);
     }
-    
+
+    public void AttackSwitch(bool attackSwitch)     //攻撃したいオブジェクトの座標を渡す
+    {
+        _enemyAttackMoba.Attack(attackSwitch);
+    }
 }
