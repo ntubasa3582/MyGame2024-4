@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Bullet
   - EnemyMovePoint
+  - Enemy1
+  - Enemy2
   layers:
   - Default
   - TransparentFX

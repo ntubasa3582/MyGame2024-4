@@ -1,31 +1,38 @@
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody))]
 
+[RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] float _bulletSpeed = 5;
-    GameObject _player;
-    Rigidbody _rb;
-    Vector3 _bulletDirection;
-    float _timer;
+    [SerializeField] float _bulletSpeed; //弾の移動パラメータ
+    [SerializeField] float _deathCount = 1.5f; //自身がデストロイするまでの時間
+    EnemyTargetMoba _enemyTarget;
+    Transform _transform;
+    GameObject _attackTarget;
+    float _deathTimer; //毎フレーム数値を入れる変数
 
-    private void Awake()
+    void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _rb = GetComponent<Rigidbody>();
+        _enemyTarget = GameObject.FindAnyObjectByType<EnemyTargetMoba>();
+        _transform = GetComponent<Transform>();
     }
 
-    void Start()
-    {
-        _bulletDirection = _player.transform.forward;
-        _bulletDirection.y = 0;
-    }
-    
     void Update()
     {
-        _rb.velocity = _bulletDirection * (_bulletSpeed * 50);
-        _timer += Time.deltaTime;
-        if (_timer > 0.5f)
+        _deathTimer += Time.deltaTime;
+        if (_deathTimer > _deathCount)
+        {
+            Destroy(gameObject);
+        }
+
+        _attackTarget = _enemyTarget.TargetObj;
+        _transform.position = Vector3.MoveTowards(transform.position, _attackTarget.transform.position, _bulletSpeed);
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        //当たり判定のあるオブジェクトに触れたら自身をデストロイする
+        if (other.gameObject.CompareTag("Enemy2"))
         {
             Destroy(gameObject);
         }
